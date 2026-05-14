@@ -1,37 +1,45 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title> Ajouter un Examen</title>
+    <title>Ajouter une question</title>
 </head>
-<body >
-  <h1>Ajouter une question à un examen</h1>
-  <form id="form-question">
-   <div class="mb-3">
-     <label>Énoncé de la question</label>
-     <input type="text" id="enonce" class="form-control" required>
-   </div>
-   <div class="mb-3">
-     <label>Durée (secondes)</label>
-     <input type="number" id="duree-q" class="form-control" required>
-   </div>
-   <div class="mb-3">
-     <label>Points</label>
-     <input type="number" id="points" class="form-control" required>
-   </div>
-   <div class="mb-3">
-     <label>Nom de l'examen parent</label>
-     <input type="text" id="nom-examen" class="form-control" required>
-   </div>
-   <div class="mb-3">
-     <label>Propriétaire de l'examen</label>
-     <input type="text" id="prop-examen" class="form-control" required>
-   </div>
-   <div id="propositions"></div>
-   <button type="button" id="add-proposition" class="btn btn-secondary">Ajouter proposition</button>
-   <button type="submit" class="btn btn-success">Ajouter la question</button>
-  </form>
-  <script src="script.js"></script>
+<body>
+
+    <h1>Ajouter une question à un examen</h1>
+
+    <form id="form-question">
+
+        <!-- Champ : nom du propriétaire -->
+        <input type="text" id="proprietaire" placeholder="Nom du propriétaire"></br></br>
+
+        <!-- Champ : nom de l'examen -->
+        <input type="text" id="nomExamen" placeholder="Nom de l'examen"></br></br>
+
+        <!-- Énoncé de la question -->
+        <input id="enonce" placeholder="Énoncé"></br></br>
+
+        <!-- Durée -->
+        <input type="number" id="duree" placeholder="Durée en secondes"></br></br>
+
+        <!-- Points -->
+        <input type="number" id="points" placeholder="Points"></br></br>
+
+        <!-- Conteneur propositions -->
+        <div id="propositions"></div>
+
+        <!-- Bouton ajouter proposition -->
+        <button type="button" id="add-proposition">
+            Ajouter une proposition
+        </button>
+
+        <button type="submit">
+            Ajouter la question
+        </button>
+
+    </form>
+
+    <script src="ajouter-question.js"></script>
+
 </body>
 </html>
