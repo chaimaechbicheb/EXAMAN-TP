@@ -1,32 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title> Ajouter un Examen</title>
+    <title>Ajouter un Examen</title>
 </head>
-<body >
-    
-    <h1>Créer un nouvel examen</h1> 
- 
-   <form id="examen-form">
-   <div class="mb-3">
-     <label>Nom de l'examen</label>
-     <input type="text" id="nom" class="" required>
-   </div>
-   <div class="mb-3">
-     <label>Durée (minutes)</label>
-     <input type="number" id="duree" class="form-control" required>
-   </div>
-   <div class="mb-3">
-     <label>Description</label>
-     <textarea id="description" class="form-control" required></textarea>
-   </div>
-   <div class="mb-3">
-     <label>Nom du propriétaire</label>
-     <input type="text" id="proprietaire" class="form-control" required>
-   </div>
-   <button type="submit" class="btn btn-primary">Ajouter l'examen</button>
-   </form>
-   <script src="script.js"></script>
+<body>
+
+    <h1>Créer un nouvel examen</h1>
+
+    <form id="form-examen">
+
+        <!-- Champ : nom de l'examen -->
+        <input type="text" id="nom" placeholder="Nom de l'examen" required></br></br>
+
+        <!-- Champ : durée en minutes -->
+        <input type="number" id="duree" placeholder="Durée en minutes" required></br></br>
+
+        <!-- Zone de texte : description -->
+        <input id="description" placeholder="Description"></br></br>
+
+        <!-- Champ : nom du propriétaire -->
+        <input type="text" id="proprietaire" placeholder="Nom du propriétaire" required></br></br>
+
+        <button type="submit">Ajouter l'examen</button>
+
+    </form>
+
+    <!-- Lier le fichier JavaScript -->
+    <script src="script.js"></script>
+
 </body>
 </html>
