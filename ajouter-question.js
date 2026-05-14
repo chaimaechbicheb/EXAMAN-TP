@@ -16,65 +16,59 @@ document.getElementById('add-proposition').addEventListener('click', () => {
   document.getElementById('propositions').appendChild(container);
 });
 document.getElementById('form-question').addEventListener('submit', function(e) {
-  e.preventDefault();
 
-  const enonce = document.getElementById('enonce').value;
-  const duree = document.getElementById('duree-q').value;
-  const points = document.getElementById('points').value;
-  const nomExamen = document.getElementById('nom-examen').value;
-  const propExamen = document.getElementById('prop-examen').value;
+    e.preventDefault();
 
-  const propositions = [];
-  document.querySelectorAll('#propositions div').forEach(div => {
-    propositions.push({
-      texte: div.querySelector('input[type="text"]').value,
-      correct: div.querySelector('input[type="checkbox"]').checked
+    const proprietaire = document.getElementById('proprietaire').value;
+
+    const nomExamen = document.getElementById('nomExamen').value;
+
+    const enonce = document.getElementById('enonce').value;
+
+    const duree = document.getElementById('duree').value;
+
+    const points = document.getElementById('points').value;
+
+    const propositions = [];
+
+    document.querySelectorAll('#propositions div').forEach(div => {
+
+        const checkbox = div.querySelector('input[type="checkbox"]');
+
+        const input = div.querySelector('input[type="text"]');
+
+        propositions.push({
+            texte: input.value,
+            correcte: checkbox.checked
+        });
     });
-  });
 
-  const key = "examens_" + propExamen;
-  let examens = JSON.parse(localStorage.getItem(key)) || [];
+    const key = 'examens_' + proprietaire;
 
-  let exam = examens.find(ex => ex.nom === nomExamen);
+    const exams = JSON.parse(localStorage.getItem(key)) || [];
 
-  if (!exam) { 
-    alert("Examen introuvable !");
-    return; 
-  } 
+    const exam = exams.find(e => e.nom === nomExamen);
 
-  const nouvelleQuestion = { enonce, duree, points, propositions };
-  exam.questions.push(nouvelleQuestion);
-  localStorage.setItem(key, JSON.stringify(examens));
+    if (!exam) {
+        alert('Examen introuvable');
+        return;
+    }
 
-  alert('Question ajoutée avec succès !'); 
-  this.reset(); 
+    const question = {
+        enonce: enonce,
+        duree: duree,
+        points: points,
+        propositions: propositions
+    };
+
+    exam.questions.push(question);
+
   
-  document.getElementById('propositions').innerHTML = ''; 
-});
-const btnAfficher = document.getElementById('btn-afficher');
-btnAfficher.addEventListener('click', () => {
-  const prop = document.getElementById('prop-search').value;
-  const key = "examens_" + prop;
-  const examens = JSON.parse(localStorage.getItem(key)) || [];
-  
-  const container = document.getElementById('list-examens');
-  container.innerHTML = "";
+    localStorage.setItem(key, JSON.stringify(exams));
 
-  if(examens.length === 0) {
-      container.innerHTML = "<p>Aucun examen trouvé.</p>";
-      return;
-  }
+    alert('Question ajoutée avec succès !');
 
-  examens.forEach(ex => {
-    const div = document.createElement('div');
-    div.className = "card mb-3 p-3";
-    div.innerHTML = `
-      <h3>${ex.nom} (${ex.duree} min)</h3>
-      <p>${ex.description}</p>
-      <ul>
-        ${ex.questions.map(q => `<li>${q.enonce} (${q.points} pts)</li>`).join('')}
-      </ul>
-    `;
-    container.appendChild(div);
-  });
+    this.reset();
+
+    document.getElementById('propositions').innerHTML = '';
 });
