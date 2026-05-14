@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des examens</title>
+</head>
+<body>
+
+    <h1>Examens enregistrés</h1>
+
+    <input type="text" id="proprietaire" placeholder="Nom du propriétaire">
+
+    <button id="afficher">Afficher</button>
+
+    <div id="resultat"></div>
+
+    <script>
+
+        document.getElementById('afficher').addEventListener('click', () => {
+            const proprietaire =
+                document.getElementById('proprietaire').value;
+
+            const exams =
+                JSON.parse(localStorage.getItem('examens_' + proprietaire))
+                || [];
+
+            const resultat = document.getElementById('resultat');
+
+            resultat.innerHTML = '';
+
+            if (exams.length === 0) {
+
+                resultat.innerHTML = 'Aucun examen trouvé';
+
+                return;
+            }
+            exams.forEach((exam, i) => {
+
+                const h2 = document.createElement('h2');
+
+                h2.textContent = exam.nom;
+
+                resultat.appendChild(h2);
+
+                const ul = document.createElement('ul');
+
+                exam.questions.forEach(q => {
+
+                    const li = document.createElement('li');
+
+                    li.textContent =
+                        q.enonce + ' (' + q.points + ' points)';
+
+                    ul.appendChild(li);
+                });
+
+                resultat.appendChild(ul);
+            });
+        });
+
+    </script>
+
+</body>
+</html>
